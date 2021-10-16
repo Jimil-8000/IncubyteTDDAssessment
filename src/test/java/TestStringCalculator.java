@@ -38,4 +38,13 @@ public class TestStringCalculator {
         assertEquals(99,calc.Add("//;\n10;10;10;69"));
         assertEquals(45,calc.Add("//@\n1@2@3@4@5@6@7@8@9"));
     }
+    @Test
+    public void testForNegativeNumbersInString(){
+        Calculator calc = new Calculator();
+        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,()-> calc.Add("5,8,-4,1"));
+        assertEquals("negatives not allowed -4",exception1.getMessage());
+
+        IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,()-> calc.Add("-10,-5,-4,20"));
+        assertEquals("negatives not allowed -10,-5,-4",exception2.getMessage());
+    }
 }

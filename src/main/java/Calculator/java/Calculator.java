@@ -18,9 +18,28 @@ public class Calculator {
         String [] numbers_array = getDefaultDelimiterNumberArray(num_string);
 
         for(String Number : numbers_array){
+            if(stringToInt(Number) < 0){
+                throwNegativeNumberException(numbers_array);
+            }
             sum += stringToInt(Number);
         }
         return sum;
+    }
+
+    private void throwNegativeNumberException(String[] numbers_array) {
+        throw new IllegalArgumentException("negatives not allowed " + getNegativeNumbers(numbers_array));
+    }
+
+    private StringBuilder getNegativeNumbers(String[] numbers_array){
+        StringBuilder NegativeNumbers = new StringBuilder("");
+        for(String number : numbers_array){
+            if(stringToInt(number) < 0){                            //Adding Negative numbers to the String
+                NegativeNumbers.append(number);
+                NegativeNumbers.append(",");
+            }
+        }
+        NegativeNumbers.deleteCharAt(NegativeNumbers.length()-1);   //Removing last comma added in the string
+        return NegativeNumbers;
     }
 
     private String[] getDefaultDelimiterNumberArray(String num_string) {
