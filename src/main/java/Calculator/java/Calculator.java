@@ -21,6 +21,9 @@ public class Calculator {
             if(stringToInt(Number) < 0){
                 throwNegativeNumberException(numbers_array);
             }
+            if(stringToInt(Number) > 1000){
+                continue;
+            }
             sum += stringToInt(Number);
         }
         return sum;

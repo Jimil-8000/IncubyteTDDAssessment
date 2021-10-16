@@ -47,4 +47,10 @@ public class TestStringCalculator {
         IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,()-> calc.Add("-10,-5,-4,20"));
         assertEquals("negatives not allowed -10,-5,-4",exception2.getMessage());
     }
+    @Test
+    public void testIgnoreValueMoreThenThousand(){
+        Calculator calc = new Calculator();
+        assertEquals(10,calc.Add("10,1001,0"));
+        assertEquals(101,calc.Add("100,1008,1"));
+    }
 }
