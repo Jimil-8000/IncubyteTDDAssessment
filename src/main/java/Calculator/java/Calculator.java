@@ -14,7 +14,13 @@ public class Calculator {
         }
     }
     private int getStringSum(String num_string){
-        return Character.getNumericValue(num_string.charAt(0)) + Character.getNumericValue(num_string.charAt(2));
+        String[] numbers_array = num_string.split(",");     //Spliting String in String array which is seprated by ,(comma)
+        int sum = 0;
+
+        for(String Number : numbers_array){
+            sum += stringToInt(Number);
+        }
+        return sum;
     }
     private int stringToInt(String numberedString){
         return Integer.parseInt(numberedString);

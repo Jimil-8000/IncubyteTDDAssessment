@@ -20,4 +20,10 @@ public class TestStringCalculator {
         assertEquals(8,calc.Add("4,4"));
     }
 
+    @Test
+    public void testForUnknownAmountOfNumbers(){
+        Calculator calc = new Calculator();
+        assertEquals(8,calc.Add("2,2,2,2"));
+        assertEquals(25,calc.Add("10,5,3,2,4,1"));
+    }
 }
