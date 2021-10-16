@@ -53,9 +53,35 @@ public class Calculator {
             return num_string.split(",|\n");
     }
     private String[] getCustomDelimiterNumberArray(String num_string){
-        String CustomDelimiter = num_string.substring(2,3);                                     //Extracting Custom Delimiter
-        String temp = num_string.substring(num_string.indexOf("\n")+1,num_string.length());     //Getting numbered string without Delimiters
-        return temp.split(CustomDelimiter);
+        String defaultDelimiters = ",|\n";
+        if(num_string.contains("//")) {
+
+            String[] arrayOfCustomDelimiters = num_string.substring(2, num_string.indexOf('\n')).split("[\\[\\]]");
+            defaultDelimiters = "";
+            for(String CustomDelimiter : arrayOfCustomDelimiters) {                     //Appending new Delimiters by checking white space with
+
+                if (!CustomDelimiter.isEmpty())
+                    defaultDelimiters += "\\Q" + CustomDelimiter + "\\E" + "|";         // \Q[aeiou]\E It matches the same sequence of characters "[aeiou]" in out case it is delimiter [****] or [%]
+            }
+            defaultDelimiters += "\n";                                                  //Appending default delimiter for escaping
+        }
+        String temp = num_string.substring(num_string.indexOf("\n")+1,num_string.length());
+        return  getNumbersOnly(temp,defaultDelimiters);
+    }
+    private String[] getNumbersOnly(String temp,String delimiters) {
+
+        StringBuilder numberedString = new StringBuilder("");
+
+        for(String number : temp.split(delimiters)){
+            if(!number.isEmpty()){
+                numberedString.append(number);
+                numberedString.append(",");
+            }
+        }
+
+        numberedString.deleteCharAt(numberedString.lastIndexOf(","));           //Removing the last Occurrence of ,(comma)
+
+        return numberedString.toString().split(",");                           //Returning the String Array which contains number only
     }
 
     private int stringToInt(String numberedString){

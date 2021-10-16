@@ -53,4 +53,17 @@ public class TestStringCalculator {
         assertEquals(10,calc.Add("10,1001,0"));
         assertEquals(101,calc.Add("100,1008,1"));
     }
+    @Test
+    public void testForAnyLengthDelimiters(){
+        Calculator calc = new Calculator();
+        assertEquals(30,calc.Add("//[****]\n****10****20"));
+        assertEquals(50,calc.Add("//[+++++++++]\n+++++++++25+++++++++25"));
+    }
+    @Test
+    public void testForMultipleDelimiters(){
+        Calculator calc = new Calculator();
+        assertEquals(6,calc.Add("//[*][%]\n1*2%3"));
+        assertEquals(8,calc.Add("//[&][-]\n1&2-3&2"));
+
+    }
 }
