@@ -32,4 +32,10 @@ public class TestStringCalculator {
         assertEquals(8,calc.Add("1\n3\n1,2,1"));
 
     }
+    @Test
+    public void testForCustomDelimiters(){
+        Calculator calc = new Calculator();
+        assertEquals(99,calc.Add("//;\n10;10;10;69"));
+        assertEquals(45,calc.Add("//@\n1@2@3@4@5@6@7@8@9"));
+    }
 }
