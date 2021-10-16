@@ -19,11 +19,17 @@ public class TestStringCalculator {
         Calculator calc = new Calculator();
         assertEquals(8,calc.Add("4,4"));
     }
-
     @Test
     public void testForUnknownAmountOfNumbers(){
         Calculator calc = new Calculator();
         assertEquals(8,calc.Add("2,2,2,2"));
         assertEquals(25,calc.Add("10,5,3,2,4,1"));
+    }
+    @Test
+    public void testForHandlingNewlineAsDelimiters(){
+        Calculator calc = new Calculator();
+        assertEquals(5,calc.Add("1\n3,1"));
+        assertEquals(8,calc.Add("1\n3\n1,2,1"));
+
     }
 }

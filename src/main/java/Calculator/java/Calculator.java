@@ -14,7 +14,8 @@ public class Calculator {
         }
     }
     private int getStringSum(String num_string){
-        String[] numbers_array = num_string.split(",");     //Spliting String in String array which is seprated by ,(comma)
+        String[] numbers_array = num_string.split(",|\n");     //Splitting String in String array which is separated by ,(comma)
+                                                                     //Adding one \n as delimiter String will split based on , or \n
         int sum = 0;
 
         for(String Number : numbers_array){
