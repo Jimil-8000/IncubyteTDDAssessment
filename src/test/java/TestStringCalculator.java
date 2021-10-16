@@ -9,11 +9,15 @@ public class TestStringCalculator {
         Calculator calc = new Calculator();
         assertEquals(0,calc.Add(""));
     }
-
     @Test
     public void testForOneNumberedString(){
         Calculator calc = new Calculator();
         assertEquals(8,calc.Add("8"));
+    }
+    @Test
+    public void testForStringContainingTwoNumbers(){
+        Calculator calc = new Calculator();
+        assertEquals(8,calc.Add("4,4"));
     }
 
 }
